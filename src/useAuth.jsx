@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 const useAuth = (code) => {
-  const [accesstoken, setAccessToken] = useState();
+  const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
 
@@ -13,11 +13,12 @@ const useAuth = (code) => {
         code
       })
       .then(res => {
-        setAccessToken(res.data.accesstoken)
+        setAccessToken(res.data.accessToken)
         setRefreshToken(res.data.refreshToken)
         setExpiresIn(res.data.expiresIn)
         window.history.pushState({}, null, '/')
-        return console.log(res.data)
+        // console.log(res.data)
+        return
       })
       .catch(() => {
         window.location = '/'
@@ -25,6 +26,7 @@ const useAuth = (code) => {
   }, [code])
 
   useEffect(() => {
+    console.log('running refresh useEffect')
     if(!refreshToken || !expiresIn)
       return
     const interval = setInterval(() => {
@@ -33,7 +35,7 @@ const useAuth = (code) => {
           refreshToken
         })
         .then(res => {
-          setAccessToken(res.data.accesstoken)
+          setAccessToken(res.data.accessToken)
           setExpiresIn(res.data.expiresIn)
           return
         })
@@ -45,7 +47,7 @@ const useAuth = (code) => {
     return () => clearInterval(interval)
   }, [refreshToken, expiresIn])
 
-  return accesstoken
+  return accessToken
 }
 
 export default useAuth;
