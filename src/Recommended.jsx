@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import SpotifyWebApi from "spotify-web-api-node";
 import Result from "./Result";
 
 const Recommended = ({ playlist, handleCreate }) => {

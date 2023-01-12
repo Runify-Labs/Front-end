@@ -4,6 +4,7 @@ import Result from "./Result";
 import Recommended from "./Recommended";
 import useAuth from "./useAuth";
 import Select from "./Select"
+import Created from "./Created"
 
 const spotifyApi = new SpotifyWebApi({
   clientId: '50d6e90a059e426e83f3920f3048b71a'
@@ -19,7 +20,9 @@ const Home = ({code}) => {
   const [playlist, setPlaylist] = useState()
   const [type, setType] = useState(['track'])
   const [selection, setSelection] = useState([]);
-  const [BPM, setBPM] = useState('')
+  const [BPM, setBPM] = useState('');
+  const [showCreated, setShowCreated] = useState(false);
+  const [playlistURL, setPlaylistURL] = useState();
 
   useEffect(() => {
     if (!accessToken) return
@@ -85,10 +88,16 @@ const Home = ({code}) => {
       .then((res) => {
         console.log(res)
         console.log(res.body.id)
+        setPlaylistURL(res.body.external_urls.spotify)
         return spotifyApi.addTracksToPlaylist(res.body.id, playlist.map((item) => item.uri))
       })
       .then((res) => {
         console.log(res)
+        setPlaylist(null)
+        setSelection([])
+        setSearch(null)
+        setBPM('')
+        setShowCreated(true)
       })
   }
 
@@ -118,6 +127,7 @@ const Home = ({code}) => {
         return <Result item={item} setSelection={setSelection} selection={selection} key={key}/>
       })}
       {playlist && <Recommended playlist={playlist} handleCreate={handleCreate} />}
+      {showCreated && <Created playlistURL={playlistURL}/>}
     </>
   )
 }

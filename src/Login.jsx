@@ -1,4 +1,5 @@
 import React from "react";
+import running from './assets/stickman-running.gif'
 
 const Login = () => {
 
@@ -6,9 +7,12 @@ const Login = () => {
 
   return (
     <>
-      <a className="font-bold" href={AUTH_URL}>
-        <button>Login with Spotify</button>
-      </a>
+      <div className="flex flex-col">
+        <img className="h-[30vh]" src={running} />
+        <a className="font-bold" href={AUTH_URL}>
+          <button>Login with Spotify</button>
+        </a>
+      </div>
     </>
   )
 }
