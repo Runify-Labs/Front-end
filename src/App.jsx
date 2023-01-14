@@ -3,6 +3,8 @@ import Home from './Home'
 
 const code = new URLSearchParams(window.location.search).get('code')
 
+document.body.style.backgroundColor = '#DFBE99'
+
 const App = () => {
   
   document.body.style.backgroundColor = '#DFBE99'
