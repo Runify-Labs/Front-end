@@ -10,6 +10,8 @@ const spotifyApi = new SpotifyWebApi({
   clientId: '50d6e90a059e426e83f3920f3048b71a'
 })
 
+const colors = ['#1DB954', '#DFBE99', '#321325', '#5E5B52', '#243119']
+
 const Home = ({code}) => {
   const accessToken = useAuth(code)
   const [search, setSearch] = useState();
@@ -35,7 +37,7 @@ const Home = ({code}) => {
       return setSearchResults([])
     if (!accessToken)
       return
-    // console.log(type)
+    console.log(type)
 
     let cancel = false
     spotifyApi.search(search, type).then(res => {
@@ -108,18 +110,18 @@ const Home = ({code}) => {
 
   return (
     <>
-      {/* {code} */}
-      <form>
-        <input type="text" placeholder="BPM" onChange={(event) => setBPM(event.target.value)}/>
-      </form>
-      {/* <button onClick={() => setType(['album'])}>Album</button> */}
-      <button onClick={() => setType(['artist'])}>Artist</button>
-      {/* <button onClick={() => setType(['playlist'])}>Playlist</button> */}
-      <button onClick={() => setType(['track'])}>Song</button>
-      <form>
-        <input type='text' placeholder='search' onChange={(event) => setSearch(event.target.value)}></input>
-      </form>
-      <button onClick={handleGenerate}>Generate Playlist</button>
+    
+      <div className="flex flex-row">
+        <form>
+          <input type="text" placeholder="BPM" onChange={(event) => setBPM(event.target.value)}/>
+        </form>
+        <button className="bg-green-pantone rounded-2xl px-3 py-1 m-2 text-white outline-white" onClick={() => setType(['artist'])}>Artist</button>
+        <button onClick={() => setType(['track'])}>Song</button>
+        <form>
+          <input type='text' placeholder='search' onChange={(event) => setSearch(event.target.value)}></input>
+        </form>
+        <button onClick={handleGenerate}>Generate Playlist</button>
+      </div>
       {selection.map((item, index) => {
         return <Select item={item} index={index} setSelection={setSelection} selection={selection} key={index}/>
       })}
@@ -128,7 +130,38 @@ const Home = ({code}) => {
       })}
       {playlist && <Recommended playlist={playlist} handleCreate={handleCreate} />}
       {showCreated && <Created playlistURL={playlistURL}/>}
-    </>
+
+        {/* <div className="flex flex-col items-center">
+          <span className="text-6xl font-bold mb-4">Runify</span>
+          <p className="self-start">
+            Throw in the cadence you would like to run at!
+            If your goal is to push yourself stech a little bit
+            but not too much or you wont be able to keep up.
+          </p>
+          <p className="self-start">
+            Use songs or artists you like as seeds to generate a new playlist every time!
+          </p>
+        </div>
+        <div className="flex flex-row items-center justify-center my-4 gap-2">
+          <form>
+            <input type="text" placeholder="Cadence" className="outline-none p-1 rounded-sm" onChange={(event) => setBPM(event.target.value)}/>
+          </form>
+          <button className="bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black">Artist</button>
+          <button className='bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black' onClick={() => setType(['track'])}>Song</button>
+          <form>
+            <input type='text' placeholder='Search' className="outline-none p-1 rounded-sm" onChange={(event) => setSearch(event.target.value)}></input>
+          </form>
+          <button className='bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black' onClick={handleGenerate}>Generate Playlist</button>
+        </div>
+        {selection.map((item, index) => {
+        return <Select item={item} index={index} setSelection={setSelection} selection={selection} key={index}/>
+      })}
+      {searchResults.map((item, key) => {
+        return <Result item={item} setSelection={setSelection} selection={selection} key={key}/>
+      })}
+      {playlist && <Recommended playlist={playlist} handleCreate={handleCreate} />}
+      {showCreated && <Created playlistURL={playlistURL}/>} */}
+      </>
   )
 }
 

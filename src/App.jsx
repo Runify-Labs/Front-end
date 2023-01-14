@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 import Login from './Login'
 import Home from './Home'
 
@@ -8,8 +5,9 @@ const code = new URLSearchParams(window.location.search).get('code')
 
 const App = () => {
   
+  document.body.style.backgroundColor = '#DFBE99'
   return (
-    <div className="App">
+    <div className='max-w-4xl mx-auto'>
       {code ? <Home code={code}/> : <Login />}
     </div>
   )
