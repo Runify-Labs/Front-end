@@ -108,26 +108,36 @@ const Home = ({code}) => {
 
   return (
     <>
-      {/* {code} */}
+    <div className='flex flex-col'>
+      <span className="text-6xl font-bold mb-4">Runify</span>
+      <p className="self-start">
+            Throw in the cadence you would like to run at!
+            If your goal is to push yourself stech a little bit
+            but not too much or you wont be able to keep up.
+            Use songs or artists you like as seeds to generate a new playlist every time!
+      </p>
+    </div>
+    <div className="flex flex-row items-center justify-center my-4 gap-2">
       <form>
-        <input type="text" placeholder="BPM" onChange={(event) => setBPM(event.target.value)}/>
+        <input type="text" placeholder="Cadence" className="outline-none p-1 rounded-sm" onChange={(event) => setBPM(event.target.value)}/>
       </form>
       {/* <button onClick={() => setType(['album'])}>Album</button> */}
-      <button onClick={() => setType(['artist'])}>Artist</button>
+      <button  className="bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black" onClick={() => setType(['artist'])}>Artist</button>
       {/* <button onClick={() => setType(['playlist'])}>Playlist</button> */}
-      <button onClick={() => setType(['track'])}>Song</button>
+      <button className='bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black' onClick={() => setType(['track'])}>Song</button>
       <form>
-        <input type='text' placeholder='search' onChange={(event) => setSearch(event.target.value)}></input>
+        <input type='text' placeholder='Search' onChange={(event) => setSearch(event.target.value)}></input>
       </form>
-      <button onClick={handleGenerate}>Generate Playlist</button>
-      {selection.map((item, index) => {
-        return <Select item={item} index={index} setSelection={setSelection} selection={selection} key={index}/>
-      })}
-      {searchResults.map((item, key) => {
-        return <Result item={item} setSelection={setSelection} selection={selection} key={key}/>
-      })}
-      {playlist && <Recommended playlist={playlist} handleCreate={handleCreate} />}
-      {showCreated && <Created playlistURL={playlistURL}/>}
+      <button className='bg-[#b7b7a4] rounded-2xl px-3 py-1 m-2 border-2 border-black' onClick={handleGenerate}>Generate Playlist</button>
+    </div>
+    {selection.map((item, index) => {
+      return <Select item={item} index={index} setSelection={setSelection} selection={selection} key={index}/>
+    })}
+    {searchResults.map((item, key) => {
+      return <Result item={item} setSelection={setSelection} selection={selection} key={key}/>
+    })}
+    {playlist && <Recommended playlist={playlist} handleCreate={handleCreate} />}
+    {showCreated && <Created playlistURL={playlistURL}/>}
     </>
   )
 }
