@@ -5,11 +5,11 @@ const Recommended = ({ playlistURL }) => {
 
   return (
     <div className='fixed top-0 left-0 z-30 w-full h-full backdrop-blur bg-black/30 flex justify-center items-center dark:bg-white/30'>
-      <div className='rounded-lg dark:bg-[#A4A4A4] bg-white'>
+      <div className='rounded-lg dark:bg-tan bg-white border border-4 border-ebony'>
         <a href={playlistURL} target='_blank'>
-            <button>Checkout Playlist!</button>
+            <button className="bg-ash-gray rounded-2xl px-3 py-1 m-2 border-2 border-ebony">Checkout Playlist!</button>
         </a>
-        <button>Create Another</button>
+        <button className="bg-ash-gray rounded-2xl px-3 py-1 m-2 border-2 border-ebony">Create Another</button>
       </div>
 
     </div>

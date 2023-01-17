@@ -9,9 +9,9 @@ const Login = () => {
   return (
     <>
       <div className="flex flex-col h-max-screen items-center">
-        <span className="text-6xl font-bold mb-4 text-[#321325]">Runify</span>
+        <span className="text-6xl font-bold mb-4">Runify</span>
         <div className="flex flex-row items-center">
-          <span className="text-[#321325] font-thin mr-2">In partnership with</span>
+          <span className="font-thin mr-2">In partnership with</span>
           <img src={spotifyLogo} />
         </div>
         <img className="w-1/12" src={running} />

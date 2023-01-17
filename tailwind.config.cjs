@@ -9,11 +9,13 @@ module.exports = {
       colors: {
         'green-pantone': '#1DB954',
         'tan': '#DFBE99',
-        'dark-purple': '#321325',
-        'davys-grey': '#5E5B52',
-        'komnu-green': '#243119'
+        'ash-gray': '#B7B7A4',
+        'artichoke': '#A5A58D',
+        'ebony': '#6B705C',
+        'black-olive': '#36382E',
+        'testA': '#368f8b'
       }
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 }

@@ -1,5 +1,6 @@
 import Login from './Login'
 import Home from './Home'
+import { sampleSearchResults } from './sample_data/sample_data.cjs'
 
 const code = new URLSearchParams(window.location.search).get('code')
 
