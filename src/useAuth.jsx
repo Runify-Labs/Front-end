@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { SERVERIP, SERVERPORT } from "./config";
 
 const useAuth = (code) => {
   const [accessToken, setAccessToken] = useState();
@@ -7,9 +8,10 @@ const useAuth = (code) => {
   const [expiresIn, setExpiresIn] = useState();
 
   useEffect(() => {
+    console.log(`http://${SERVERIP}:${SERVERPORT}/login`)
     console.log(code)
     axios
-      .post('http://localhost:3000/login', {
+      .post(`http://${SERVERIP}:${SERVERPORT}/login`, {
         code
       })
       .then(res => {
@@ -21,7 +23,8 @@ const useAuth = (code) => {
         return
       })
       .catch(() => {
-        window.location = '/'
+          // window.location = '/'
+          console.log(err)
       })
   }, [code])
 
@@ -31,7 +34,7 @@ const useAuth = (code) => {
       return
     const interval = setInterval(() => {
       axios
-        .post('http://localhost:3000/refresh', {
+        .post(`http://${SERVERIP}:${SERVERPORT}/refresh`, {
           refreshToken
         })
         .then(res => {
@@ -39,8 +42,9 @@ const useAuth = (code) => {
           setExpiresIn(res.data.expiresIn)
           return
         })
-        .catch(() => {
-          window.location = '/'
+        .catch((err) => {
+          // window.location = '/'
+          console.log(err)
         })
     }, (expiresIn - 60) * 1000)
     
