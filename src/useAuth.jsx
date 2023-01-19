@@ -23,7 +23,7 @@ const useAuth = (code) => {
         return
       })
       .catch(() => {
-          // window.location = '/'
+          window.location = '/'
           console.log(err)
       })
   }, [code])
@@ -43,7 +43,7 @@ const useAuth = (code) => {
           return
         })
         .catch((err) => {
-          // window.location = '/'
+          window.location = '/'
           console.log(err)
         })
     }, (expiresIn - 60) * 1000)
